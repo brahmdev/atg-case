@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+          "src/*": ["src/*", "src/"],
+          "public/*": ["public/*", "./public"],
+          "common/*": ["src/common/*", "./src/common"],
+          "components/*": ["src/components/*", "./src/components"],
+          "hooks/*": ["src/hooks/*", "./src/hooks"],
+          "pages/*": ["src/pages/*", "./src/pages"],
+          "utils/*": ["src/utils/*", "./src/utils"]
+        }
+    }
+}
