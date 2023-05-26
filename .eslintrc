@@ -1,0 +1,217 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:css-import-order/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier",
+        "plugin:react-hooks/recommended"
+    ],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "react",
+        "react-hooks"
+    ],
+    "rules": {
+        "at-rule-no-unknown": [
+            0,
+            {
+                "ignoreAtRules": [
+                    "apply"
+                ]
+            }
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+        "no-var": 2,
+        "no-multi-spaces": 1,
+        "no-constant-condition": 1,
+        "comma-dangle": 0,
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-double"
+        ],
+        "quotes": [
+            "error",
+            "double",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "object-curly-spacing": [
+            2,
+            "always"
+        ],
+        "array-bracket-spacing": [
+            2,
+            "never"
+        ],
+        "computed-property-spacing": [
+            2,
+            "never"
+        ],
+        "react/jsx-curly-spacing": [
+            "error",
+            "never",
+            {
+                "allowMultiline": true
+            }
+        ],
+        "react/jsx-equals-spacing": [
+            2,
+            "never"
+        ],
+        "arrow-spacing": "error",
+        "space-in-parens": [
+            "error",
+            "never"
+        ],
+        "space-before-function-paren": [
+            "error",
+            "always"
+        ],
+        "block-spacing": "error",
+        "space-infix-ops": "error",
+        "rest-spread-spacing": "error",
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "key-spacing": [
+            "error",
+            {
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ],
+        "prefer-template": "error",
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "no-mixed-spaces-and-tabs": [
+            2,
+            "smart-tabs"
+        ],
+        "react/jsx-tag-spacing": "error",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/camelcase": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "react-hooks/rules-of-hooks": "error", // Check rules of Hooks
+        "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+        "sort-imports": [
+            "error",
+            {
+                "allowSeparatedGroups": true
+            }
+        ],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    [
+                        "external",
+                        "builtin"
+                    ],
+                    "internal",
+                    [
+                        "sibling",
+                        "parent"
+                    ],
+                    "index",
+                    "type"
+                ],
+                "newlines-between": "always",
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "~",
+                        "group": "unknown",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "@smartbear/**",
+                        "group": "external",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "pages/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "components/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "hooks/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "common/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "network/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "utils/**",
+                        "group": "internal",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "src/**",
+                        "group": "internal",
+                        "position": "after"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": [
+                    "react"
+                ],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+name: Release Main Branch
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Create outputs from build context for subsequent steps.
+      - name: Extract context
+        run: |
+          version_nodejs=$(jq --raw-output .versions.nodejs .github/versions.json)
+          echo "::set-output name=VERSION_NODEJS::${version_nodejs}"
+        id: env_vars  
+
+      # Use nodejs
+      - name: Use nodejs ${{ steps.env_vars.outputs.VERSION_NODEJS }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.env_vars.outputs.VERSION_NODEJS }}
+
+      - name: Install dependencies with npm
+        run: npm ci
+
+      - name: Run ESLint and Prettier
+        run: npm run lint
+
+      # automates the whole package release workflow including: determining the next version number,
+      # generating the release notes.
+      # https://semantic-release.gitbook.io/semantic-release/usage/getting-started
+          
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
