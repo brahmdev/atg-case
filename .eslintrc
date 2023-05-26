@@ -189,11 +189,6 @@
                         "position": "after"
                     },
                     {
-                        "pattern": "network/**",
-                        "group": "internal",
-                        "position": "after"
-                    },
-                    {
                         "pattern": "utils/**",
                         "group": "internal",
                         "position": "after"
