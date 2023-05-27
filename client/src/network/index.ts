@@ -9,7 +9,7 @@ async function fetchRequest (url: string, options?: RequestInit | undefined): Pr
 
 export const fetchBetDetails = async (params: BetDetailsParams) => {    
   const response = await fetchRequest(`/betDetails/${params.betType}`);
-    console.log("RESPONSE ", response);
+  console.log("RESPONSE ", response);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
