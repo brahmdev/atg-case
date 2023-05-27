@@ -2,6 +2,7 @@
   "name": "atg-case",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@headlessui/react": "^1.7.14",
@@ -67,7 +68,6 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
-  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

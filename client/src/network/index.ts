@@ -7,13 +7,13 @@ async function fetchRequest (url: string, options?: RequestInit | undefined): Pr
   });
 }
 
-export const fetchBetDetails = async (params: BetDetailsParams) => {    
+export const fetchBetDetails = async (params: BetDetailsParams) => {
   const response = await fetchRequest(`/betDetails/${params.betType}`);
   console.log("RESPONSE ", response);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
   const data = await response.json();
-   
+  
   return data as BetDetails;
 };

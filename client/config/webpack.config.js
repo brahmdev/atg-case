@@ -323,6 +323,7 @@ module.exports = function (webpackEnv) {
         "common": "./src/common",
         "components": "./src/components",
         "hooks": "./src/hooks",
+        "layout": "./src/layout",
         "network": "./src/network",
         "pages": "./src/pages",
         "types": "./src/types",
