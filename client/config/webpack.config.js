@@ -325,6 +325,7 @@ module.exports = function (webpackEnv) {
         "hooks": "./src/hooks",
         "network": "./src/network",
         "pages": "./src/pages",
+        "types": "./src/types",
         "utils": "./src/utils",
         ...(modules.webpackAliases || {}),
       },
