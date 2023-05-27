@@ -129,12 +129,6 @@
         "@typescript-eslint/no-unsafe-assignment": "off",
         "react-hooks/rules-of-hooks": "error", // Check rules of Hooks
         "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-        "sort-imports": [
-            "error",
-            {
-                "allowSeparatedGroups": true
-            }
-        ],
         "import/order": [
             "error",
             {
@@ -185,11 +179,6 @@
                     },
                     {
                         "pattern": "common/**",
-                        "group": "internal",
-                        "position": "after"
-                    },
-                    {
-                        "pattern": "network/**",
                         "group": "internal",
                         "position": "after"
                     },
