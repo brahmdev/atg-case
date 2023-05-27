@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
-  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brahmdev/atg-case.git"
@@ -16,28 +14,11 @@
     "url": "https://github.com/brahmdev/atg-case/issues"
   },
   "homepage": "https://github.com/brahmdev/atg-case#readme",
-  "description": "",
   "devDependencies": {
     "concurrently": "^8.0.1",
     "husky": "^8.0.3"
   },
   "scripts": {
-    "client": "npm start --prefix client",
-    "server": "npm start --prefix server",
-    "dev": "concurrently \"npm run client\" \"npm run server\" ",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brahmdev/atg-case.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/brahmdev/atg-case/issues"
-  },
-  "homepage": "https://github.com/brahmdev/atg-case#readme"
     "prepare": "husky install",
     "client": "npm run start --prefix client",
     "server": "npm run start --prefix server",
