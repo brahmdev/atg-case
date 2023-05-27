@@ -1,40 +1,68 @@
-import { Result, Track } from "types/BetDetails";
 
+import { Result, Track } from "src/types/BetDetailsType";
 
-export const BetDetailsTableColumns = [
-  {
-    id: "tracks.name",
-    accessorKey: "Tracks",
-    className: "w-275 min-h-fit",
-    cell: (cellData: { row: { original: Result } }) => {
-      const trackInfo = cellData.row.original;
-      return (
-        <div className="flex justify-start items-center">
-          {
-            trackInfo.tracks.map((track: Track) => {
-              return (
-                <a key={track.id} className="m-2 p-2 bg-indigo-400 text-white font-bold rounded">{track.name}</a>
-              );
+interface Props {
+  handleShowDetails: (gameId: string) => void;
+}
+export function BetDetailsTableColumns ({ handleShowDetails }: Props) {
+
+  return [
+    {
+      accessorKey: "Start Time",
+      className: "w-275 min-h-fit",
+      cell: (cellData: { row: { original: Result } }) => {
+        const trackInfo = cellData.row.original;
+        return (
+          <p key={trackInfo.id}>{trackInfo.startTime.toString()}</p>
+        );
+
+      },
+    },
+    {
+      accessorKey: "Tracks",
+      className: "w-275 min-h-fit",
+      cell: (cellData: { row: { original: Result } }) => {
+        const trackInfo = cellData.row.original;
+        return (
+          <div className="flex justify-start items-center">
+            {
+              trackInfo.tracks.map((track: Track) => {
+                return (
+                  <span
+                    key={track.id}
+                    className="m-2 p-2 bg-indigo-400 text-white font-bold rounded"
+                  >
+                    {track.name}
+                  </span>
+                );
+              }
+              )
             }
-            )
-          }
-        </div>
-      );
+          </div>
+        );
+
+      },
 
     },
+    {
+      id: "showDetails",
+      className: "w-275 min-h-fit",
+      cell: (cellData: { row: { original: Result } }) => {
+        const trackInfo = cellData.row.original;
+        return (
+          <div className="flex justify-start items-center">
+            <a
+              key={trackInfo.id}
+              className="m-2 p-2 font-bold hover:cursor-pointer underline"
+              onClick={() => handleShowDetails(`/game/${trackInfo.id}`)}
+            >
+              Show Details
+            </a>
+          </div>
+        );
 
-  },
-  {
-    Header: "Start Time",
-    id: "startTime",
-    accessorKey: "startTime",
-    className: "w-275 min-h-fit",
-    cell: (cellData: { row: { original: Result } }) => {
-      const trackInfo = cellData.row.original;
-      return (
-        <p key={trackInfo.id}>{trackInfo.startTime.toString()}</p>
-      );
+      },
 
     },
-  }
-];
+  ];
+}

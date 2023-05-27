@@ -8,8 +8,21 @@ const app = express();
 
 app.get("/betDetails/:betType", async (req, res) => {
     const betType = req.params.betType;
-    const response = await fetch(`https://atg.se/services/racinginfo/v1/api/products/${betType}`, {
-        method: 'GET',
+    fetchRequest(`https://atg.se/services/racinginfo/v1/api/products/${betType}`, res);
+});
+
+app.get("/gameDetails/:gameId", async (req, res) => {
+    const gameId = req.params.gameId;
+    fetchRequest(`https://atg.se/services/racinginfo/v1/api/games/${gameId}`, res);
+});
+
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+});
+
+async function fetchRequest (url, res, method = "GET",) {
+    const response = await fetch(url, {
+        method: method,
         headers: {
             'Accept': 'application/json'
         }
@@ -20,8 +33,4 @@ app.get("/betDetails/:betType", async (req, res) => {
 
     const responseJson = await response.json();
     res.json(responseJson);
-});
-
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-});
+}

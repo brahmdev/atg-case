@@ -1,19 +1,21 @@
-import { BetDetails, BetDetailsParams } from "types/BetDetails";
+import { BetDetails, BetDetailsParams } from "src/types/BetDetailsType";
+import { GameDetailsType, GameDetailsParams } from "src/types/GameDetailsType";
 
-async function fetchRequest (url: string, options?: RequestInit | undefined): Promise<Response> {
-  return await fetch(url, {
+async function fetchRequest (url: string, options?: RequestInit | undefined): Promise<BetDetails | GameDetailsType | Error> {
+  const response = await fetch(url, {
     ...options,
     mode: "no-cors",
   });
-}
-
-export const fetchBetDetails = async (params: BetDetailsParams) => {
-  const response = await fetchRequest(`/betDetails/${params.betType}`);
-  console.log("RESPONSE ", response);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
-  const data = await response.json();
-  
-  return data as BetDetails;
+  return await response.json();
+}
+
+export const fetchBetDetails = async (params: BetDetailsParams) => {
+  return await fetchRequest(`/betDetails/${params.betType}`) as BetDetails;
+};
+
+export const fetchGameDetails = async (params: GameDetailsParams) => {
+  return await fetchRequest(`/gameDetails/${params.gameId}`) as GameDetailsType;
 };

@@ -1,13 +1,14 @@
 
 import { fetchBetDetails } from "network/";
 import { useQuery } from "react-query";
-import { BetDetailsParams } from "types/BetDetails";
+
+import { BetDetailsParams } from "src/types/BetDetailsType";
 
 export const BET_DETAILS_QUERY = "bet.details";
 
 export const useBetDetailsQuery = (params: BetDetailsParams) => {
   return useQuery
-  ([BET_DETAILS_QUERY, params], async () => {
+  ([BET_DETAILS_QUERY, params], () => {
     return fetchBetDetails(params);
   }, 
   {

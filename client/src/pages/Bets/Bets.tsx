@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { BetDetails } from "types/BetDetailsType";
+
+import { SelectMenu } from "components/selectMenu";
+import { Table } from "components/table";
 
 import { useBetDetailsQuery } from "hooks/queries/useBetDetails";
 
-import { SelectMenu } from "src/components/selectMenu";
-import { Table } from "src/components/table";
-import { BetDetails } from "src/types/BetDetails";
 
 import { BetDetailsTableColumns } from "./columns";
 
@@ -16,16 +19,19 @@ export function Bets () {
 
   const [betDetails, setBetDetails] = useState<BetDetails>();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!isLoading && data) {
-      console.log("DATA ", data);
       setBetDetails(data);
     }
   }, [data, isLoading]);
 
-  const columns = useMemo(
-    () => BetDetailsTableColumns,
-    []);
+  const handleShowDetails = useCallback((gameDetailPath: string) => {
+    navigate(gameDetailPath);
+  }, [navigate]);
+
+  const columns = useMemo(() => BetDetailsTableColumns({ handleShowDetails }), [handleShowDetails]);
 
   return (
     <div className="m-6">
