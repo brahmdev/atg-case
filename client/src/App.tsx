@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { Home } from "pages/";
+import { BetDetails } from "pages/";
+
+import { Header } from "src/layout/Header";
 
 import "./App.css";
 
@@ -9,13 +11,14 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <BetDetails />,
   },
 ]);
 
-function App() {
+function App () {
   return (
     <QueryClientProvider client={queryClient}>
+      <Header />
       <RouterProvider router={router} />
     </QueryClientProvider>
   );
