@@ -236,12 +236,12 @@ export interface Breeder {
 }
 
 export interface Pedigree {
-    father: Ther;
-    mother: Ther;
-    grandfather: Ther;
+    father: HorseParent;
+    mother: HorseParent;
+    grandfather: HorseParent;
 }
 
-export interface Ther {
+export interface HorseParent {
     name: string;
     nationality?: string;
     id?: number;

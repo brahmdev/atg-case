@@ -5,7 +5,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 interface Props {
   menuItems: Array<string>;
-  onBetTypeChange: (betType: string) => void;
+  onChange: (betType: string) => void;
   activeItem: string;
 }
 function classNames (...classes: Array<string>) {
@@ -13,7 +13,7 @@ function classNames (...classes: Array<string>) {
 }
 
 export function SelectMenu (props: Props) {
-  const { menuItems, onBetTypeChange, activeItem } = props;
+  const { menuItems, onChange, activeItem } = props;
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -40,12 +40,13 @@ export function SelectMenu (props: Props) {
                   <Menu.Item>
                     {({ active }) => (
                       <a
+                        key={menuItem}
                         href="#"
                         className={classNames(
                           active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                           "block px-4 py-2 text-sm w-full"
                         )}
-                        onClick={() => onBetTypeChange(menuItem)}
+                        onClick={() => onChange(menuItem)}
                       >
                         {menuItem}
                       </a>

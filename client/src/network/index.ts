@@ -1,5 +1,5 @@
-import { BetDetails, BetDetailsParams } from "src/types/BetDetailsType";
-import { GameDetailsType, GameDetailsParams } from "src/types/GameDetailsType";
+import { BetDetails, BetDetailsParams } from "types/BetDetailsType";
+import { GameDetailsType, GameDetailsParams } from "types/GameDetailsType";
 
 async function fetchRequest (url: string, options?: RequestInit | undefined): Promise<BetDetails | GameDetailsType | Error> {
   const response = await fetch(url, {

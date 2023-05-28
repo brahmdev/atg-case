@@ -1,8 +1,7 @@
 
 import { fetchGameDetails } from "network/";
 import { useQuery } from "react-query";
-
-import { GameDetailsParams } from "src/types/GameDetailsType";
+import { GameDetailsParams } from "types/GameDetailsType";
 
 export const GAME_DETAILS_QUERY = "game.details";
 

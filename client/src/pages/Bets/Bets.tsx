@@ -36,7 +36,7 @@ export function Bets () {
   return (
     <div className="m-6">
       <div className="float-right">
-        <SelectMenu menuItems={BETS_TYPE} onBetTypeChange={setSelectedBetType} activeItem={selectedBetType} />
+        <SelectMenu menuItems={BETS_TYPE} onChange={setSelectedBetType} activeItem={selectedBetType} />
       </div>
 
       <Table

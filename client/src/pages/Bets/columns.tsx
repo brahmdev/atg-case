@@ -1,5 +1,5 @@
 
-import { Result, Track } from "src/types/BetDetailsType";
+import { Result, Track } from "types/BetDetailsType";
 
 interface Props {
   handleShowDetails: (gameId: string) => void;

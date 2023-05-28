@@ -1,0 +1,1 @@
+export { HorseDetails } from "./HorseDetails";

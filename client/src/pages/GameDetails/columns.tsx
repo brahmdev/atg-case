@@ -1,7 +1,11 @@
 
-import { Race, Start } from "types/GameDetailsType";
+import { Horse, Race, Start } from "types/GameDetailsType";
 
-export function GameDetailsTableColumns () {
+interface Props {
+  handleShowHorseDetails: (horse: Horse) => void;
+}
+
+export function GameDetailsTableColumns ({ handleShowHorseDetails }: Props) {
 
   return [
     {
@@ -38,7 +42,7 @@ export function GameDetailsTableColumns () {
       },
     },
     {
-      accessorKey: "Starts",
+      accessorKey: "Races",
       className: "w-275 min-h-fit",
       cell: (cellData: { row: { original: Race } }) => {
         const raceInfo = cellData.row.original;
@@ -46,11 +50,11 @@ export function GameDetailsTableColumns () {
           <div className="flex justify-start items-center">
             {
               raceInfo.starts.map((start: Start) => {
-                console.log("start ", start);
                 return (
                   <a
                     key={start.number}
                     className="m-2 p-2 bg-slate-400 text-white font-bold rounded hover:cursor-pointer"
+                    onClick={() => handleShowHorseDetails(start.horse)}
                   >
                     {start.number}
                   </a>
