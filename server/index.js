@@ -1,4 +1,3 @@
-
 import express from 'express';
 import fetch from 'node-fetch';
 
@@ -8,12 +7,12 @@ const app = express();
 
 app.get("/betDetails/:betType", async (req, res) => {
     const betType = req.params.betType;
-    fetchRequest(`https://atg.se/services/racinginfo/v1/api/products/${betType}`, res);
+    await fetchRequest(`https://atg.se/services/racinginfo/v1/api/products/${betType}`, res);
 });
 
 app.get("/gameDetails/:gameId", async (req, res) => {
     const gameId = req.params.gameId;
-    fetchRequest(`https://atg.se/services/racinginfo/v1/api/games/${gameId}`, res);
+    await fetchRequest(`https://atg.se/services/racinginfo/v1/api/games/${gameId}`, res);
 });
 
 app.listen(PORT, () => {

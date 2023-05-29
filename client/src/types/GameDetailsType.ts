@@ -51,6 +51,11 @@ export interface Race {
     mediaId: string;
     pools: RacePools;
     starts: Start[];
+    /*
+    ** We need to add "subRows" property here with race.starts as value because
+    *  react-table expects to have subRows as property when we need to show expandable rows
+   */
+    subRows: Start[];
     name?: string;
     mergedPools?: MergedPool[];
 }

@@ -1,1 +1,0 @@
-export { GameDetails } from "./GameDetails";

@@ -13,9 +13,9 @@ async function fetchRequest (url: string, options?: RequestInit | undefined): Pr
 }
 
 export const fetchBetDetails = async (params: BetDetailsParams) => {
-  return await fetchRequest(`/betDetails/${params.betType}`) as BetDetails;
+  return params.betType && await fetchRequest(`/betDetails/${params.betType}`) as BetDetails;
 };
 
 export const fetchGameDetails = async (params: GameDetailsParams) => {
-  return await fetchRequest(`/gameDetails/${params.gameId}`) as GameDetailsType;
+  return params.gameId && await fetchRequest(`/gameDetails/${params.gameId}`) as GameDetailsType;
 };

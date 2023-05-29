@@ -1,48 +1,70 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { BetDetails } from "types/BetDetailsType";
+import { Result } from "types/BetDetailsType";
 
+import { RaceDetails } from "components/raceDetails";
 import { SelectMenu } from "components/selectMenu";
-import { Table } from "components/table";
 
 import { useBetDetailsQuery } from "hooks/queries/useBetDetails";
 
-
-import { BetDetailsTableColumns } from "./columns";
-
-const BETS_TYPE = ["V86", "V75", "GS75"];
+const BETS_TYPE = ["V75", "V86", "GS75"];
 
 export function Bets () {
   const [selectedBetType, setSelectedBetType] = useState(BETS_TYPE[0]);
-  const { data, isLoading, } = useBetDetailsQuery({ betType: selectedBetType });
 
-  const [betDetails, setBetDetails] = useState<BetDetails>();
-
-  const navigate = useNavigate();
-
+  const [recentBetResult, setRecentBetResult] = useState<Result>();
+  const [recentBetResultTracks, setRecentBetResultTracks] = useState<Array<string>>();
+  
+  const { data: betDetailsData, isLoading: isBetDetailsLoading, } = useBetDetailsQuery({ betType: selectedBetType });
+  
   useEffect(() => {
-    if (!isLoading && data) {
-      setBetDetails(data);
+    if (!isBetDetailsLoading && betDetailsData) {
+      const recentResult = betDetailsData.results[0];
+      const tracks: Array<string> = [];
+      recentResult.tracks.map(track => {
+        tracks.push(track.name);
+      });
+      setRecentBetResult(recentResult);
+      setRecentBetResultTracks(tracks);
     }
-  }, [data, isLoading]);
-
-  const handleShowDetails = useCallback((gameDetailPath: string) => {
-    navigate(gameDetailPath);
-  }, [navigate]);
-
-  const columns = useMemo(() => BetDetailsTableColumns({ handleShowDetails }), [handleShowDetails]);
-
+  }, [betDetailsData, isBetDetailsLoading]);
+  
+  function renderTracks () {
+    return (
+      <div className="flex justify-start items-center">
+        <span className="font-semibold">Tracks:</span>
+        <div className="ml-2 leading-10  whitespace-pre-wrap">
+          {
+            recentBetResultTracks?.map(trackName => {
+              return (
+                <span
+                  key={trackName}
+                  className="m-2 p-2 font-bold rounded hover:cursor-pointer bg-indigo-400 text-white"
+                >
+                  {trackName}
+                </span>
+              );
+            })
+          }
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="m-6">
       <div className="float-right">
         <SelectMenu menuItems={BETS_TYPE} onChange={setSelectedBetType} activeItem={selectedBetType} />
       </div>
-
-      <Table
-        data={betDetails?.results || []}
-        columns={columns}
-      />
+  
+      {recentBetResult && renderTracks()}
+  
+      <div className="m-6">
+        {
+          recentBetResult && <RaceDetails betResult={recentBetResult} />
+        }
+      </div>
+      
     </div>
   );
 }

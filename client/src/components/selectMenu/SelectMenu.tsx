@@ -37,7 +37,7 @@ export function SelectMenu (props: Props) {
             {
               menuItems.map((menuItem: string) => {
                 return (
-                  <Menu.Item>
+                  <Menu.Item key={menuItem}>
                     {({ active }) => (
                       <a
                         key={menuItem}
