@@ -260,8 +260,8 @@ export interface HorseParent {
 
 export interface Shoes {
     reported: boolean;
-    front: Back;
-    back: Back;
+    front?: Back;
+    back?: Back;
 }
 
 export interface Back {
@@ -301,8 +301,8 @@ export interface LifeRecord {
 
 export interface Sulky {
     reported: boolean;
-    type: Colour;
-    colour: Colour;
+    type?: Colour;
+    colour?: Colour;
 }
 
 export interface Colour {

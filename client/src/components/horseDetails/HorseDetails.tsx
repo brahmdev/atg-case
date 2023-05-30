@@ -10,6 +10,7 @@ interface Props {
 }
 export function HorseDetails ({ startRow }: Props) {
   const horseTableColumn = useMemo(() => horsesDetailsTableColumn(), []);
+  
   const renderRaceDetailsTable = useMemo(() => {
     return (
       <Table

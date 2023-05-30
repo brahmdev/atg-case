@@ -23,7 +23,7 @@ export function RaceDetails ({ betResult }: Props) {
       /*
       ** We need to add "subRows" property here with race.starts as value because
       *  react-table expects to have subRows as property when we need to show expandable rows
-       */
+      */
       raceDetailsToUpdate?.races.map((race) => {
         race["subRows"] = race.starts;
       });

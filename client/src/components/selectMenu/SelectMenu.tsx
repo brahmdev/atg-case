@@ -8,9 +8,6 @@ interface Props {
   onChange: (betType: string) => void;
   activeItem: string;
 }
-function classNames (...classes: Array<string>) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export function SelectMenu (props: Props) {
   const { menuItems, onChange, activeItem } = props;
@@ -38,14 +35,11 @@ export function SelectMenu (props: Props) {
               menuItems.map((menuItem: string) => {
                 return (
                   <Menu.Item key={menuItem}>
-                    {({ active }) => (
+                    {() => (
                       <a
                         key={menuItem}
                         href="#"
-                        className={classNames(
-                          active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                          "block px-4 py-2 text-sm w-full"
-                        )}
+                        className="text-gray-700 block px-4 py-2 text-sm w-full"
                         onClick={() => onChange(menuItem)}
                       >
                         {menuItem}

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --coverage",
+    "test": "node scripts/test.js a --coverage",
     "lint:prettier": "prettier --check .",
     "lint": "eslint_d -c .eslintrc --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix"
@@ -129,10 +129,13 @@
       "<rootDir>/src"
     ],
     "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/src/reportWebVitals.ts",
+      "!<rootDir>/src/react-app-env.d.ts",
+      "!<rootDir>/src/index.tsx",
       "!<rootDir>/src/mocks/utils/*",
       "!<rootDir>/src/types/*",
-      "!<rootDir>/src/testUtils/*"
+      "!<rootDir>/src/testUtils/utils/*"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"

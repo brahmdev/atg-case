@@ -39,9 +39,7 @@ export function Table<TData extends object> ({
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
                 <th key={header.id} className="text-left">
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
+                  {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
                     )}

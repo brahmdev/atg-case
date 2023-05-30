@@ -56,4 +56,14 @@ describe("test BetDetails component", () => {
     expect(rowsBeforeRender).toBeNull();
     expect(screen.getByText("Loading...")).toBeVisible();
   });
+
+  it("changes the value of betType selection dropdown", () => {
+    mockBetLoadingState = false;
+    renderWithClient(<Bets />);
+    expect(screen.getByText("V75")).toBeVisible();
+
+    fireEvent.click(screen.getByText("V75"));
+    fireEvent.click(screen.getByText("V86"));
+    expect(screen.getByText("V86")).toBeVisible();
+  });
 });
