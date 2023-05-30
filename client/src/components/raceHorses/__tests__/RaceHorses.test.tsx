@@ -21,20 +21,20 @@ jest.mock("react-query", () => {
 });
 
 describe("test RaceHorses component", () => {
-  it("renders the race horses table on page load", async () => {
-    const rowsBeforeRender = await screen.queryByRole("table > tbody > tr");
+  it("renders the race horses table on page load", () => {
+    const rowsBeforeRender = screen.queryByRole("table > tbody > tr");
     expect(rowsBeforeRender).toBeNull();
     renderWithClient(<RaceHorses raceRow={GAME_INFO_MOCK.races[0]} />);
     
-    const table = await screen.getByRole("table");
+    const table = screen.getByRole("table");
     const trackName = within(table).getByRole("cell", { name: "Filippa B.J." });
     expect(trackName).toBeVisible();
   });
   
-  it("expands the race horse row when clicked on chevron right icon on row", async () => {
+  it("expands the race horse row when clicked on chevron right icon on row", () => {
     renderWithClient(<RaceHorses raceRow={GAME_INFO_MOCK.races[0]} />);
     fireEvent.click(screen.getAllByTestId("expand-horse-details")[0]);
-    const table = await screen.getAllByRole("table")[1];
+    const table = screen.getAllByRole("table")[1];
     const horseFatherName = within(table).getByRole("cell", { name: "Muscle Mass" });
     expect(horseFatherName).toBeVisible();
   });

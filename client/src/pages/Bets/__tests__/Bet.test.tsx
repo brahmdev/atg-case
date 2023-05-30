@@ -32,27 +32,27 @@ jest.mock("react-query", () => {
 });
 
 describe("test BetDetails component", () => {
-  it("renders the track name", async () => {
-    const rowsBeforeRender = await screen.queryByRole("table > tbody > tr");
+  it("renders the track name", () => {
+    const rowsBeforeRender = screen.queryByRole("table > tbody > tr");
     expect(rowsBeforeRender).toBeNull();
     renderWithClient(<Bets />);
     
     expect(screen.getByTestId("track-container")).toHaveTextContent("Solvalla");
-    const table = await screen.getByRole("table");
+    const table = screen.getByRole("table");
     const raceName = within(table).getByRole("cell", { name: "Gränges - Lady Snärts lopp - STL Stoeliten, Försök 6 (Final Solvalla 26 december)" });
     expect(raceName).toBeVisible();
   });
   
-  it("renders default bet type", async () => {
+  it("renders default bet type", () => {
     renderWithClient(<Bets />);
     expect(screen.getByText("V75")).toBeVisible();
   });
 
-  it("renders loading message when component is in loading state", async () => {
+  it("renders loading message when component is in loading state", () => {
     mockBetLoadingState = true;
     renderWithClient(<Bets />);
 
-    const rowsBeforeRender = await screen.queryByRole("table > tbody > tr");
+    const rowsBeforeRender = screen.queryByRole("table > tbody > tr");
     expect(rowsBeforeRender).toBeNull();
     expect(screen.getByText("Loading...")).toBeVisible();
   });

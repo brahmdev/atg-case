@@ -6,7 +6,12 @@ export const GAME_DETAILS_QUERY = "game.details";
 
 /**
  *
- * @param params
+ * @param params (optional) {
+    gameId?: string;
+   }
+ * @description optional "gameId" will be passed to fetch game details.
+ * @returns Query Result (UseQueryResult)
+ * 
  */
 export const useGameDetailsQuery = (params: GameDetailsParams) => {
   return useQuery
