@@ -129,8 +129,10 @@
       "<rootDir>/src"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "!<rootDir>/src/reportWebVitals.ts",
+      "!<rootDir>/src/mocks/utils/*",
+      "!<rootDir>/src/types/*",
+      "!<rootDir>/src/testUtils/*"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
@@ -141,6 +143,13 @@
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testPathIgnorePatterns": [
+      "__mocks__",
+      "<rootDir>/src/mocks/",
+      "src/testUtils/utils",
+      "__tests__/utils/",
+      "__tests__/hooksUtils.tsx"
     ],
     "testEnvironment": "jsdom",
     "transform": {
@@ -153,6 +162,10 @@
       "^.+\\.module\\.(css|sass|scss)$"
     ],
     "modulePaths": [],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"

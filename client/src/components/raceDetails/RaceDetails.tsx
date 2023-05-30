@@ -4,8 +4,8 @@ import { Row, RowData } from "@tanstack/react-table";
 import { Result } from "types/BetDetailsType";
 import { Race } from "types/GameDetailsType";
 
-import { HorseDetails } from "components/horseDetails";
 import { raceTableColumns } from "components/raceDetails/raceTableColumns";
+import { RaceHorses } from "components/raceHorses";
 import { Table } from "components/table";
 
 import { useGameDetailsQuery } from "hooks/queries/useGameDetails";
@@ -15,7 +15,6 @@ interface Props {
 }
 export function RaceDetails ({ betResult }: Props) {
   const [raceDetails, setRaceDetails] = useState<Array<Race>>();
-  
   const { data: raceDetailsData, isLoading: isGameDetailsLoading, } = useGameDetailsQuery({ gameId: betResult?.id });
   
   useEffect(() => {
@@ -34,6 +33,10 @@ export function RaceDetails ({ betResult }: Props) {
   
   const columns = useMemo(() => raceTableColumns(), []);
   
+  if (isGameDetailsLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="m-6">
       <div className="m-6">
@@ -41,7 +44,7 @@ export function RaceDetails ({ betResult }: Props) {
           data={raceDetails || []}
           columns={columns}
           getRowCanExpand={() => true}
-          renderSubComponent={({ row }: { row: Row<RowData>}) => <HorseDetails row={row} />}
+          renderSubComponent={({ row }: { row: Row<RowData>}) => <RaceHorses raceRow={(row.original as Race)} />}
         />
       </div>
     

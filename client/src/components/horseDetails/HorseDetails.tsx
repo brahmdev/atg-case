@@ -1,24 +1,23 @@
 import { useMemo } from "react";
 
-import { Row, RowData } from "@tanstack/react-table";
-import { Race } from "types/GameDetailsType";
+import { Start } from "types/GameDetailsType";
 
-import { horseTableColumn } from "components/horseDetails/horseTableColumn";
+import { horsesDetailsTableColumn } from "components/horseDetails/horseTableColumn";
 import { Table } from "components/table";
 
 interface Props {
-  row: Row<RowData>
+  startRow: Start
 }
-export function HorseDetails ({ row }: Props) {
-  const horseDetailTableColumn = useMemo(() => horseTableColumn(), []);
+export function HorseDetails ({ startRow }: Props) {
+  const horseTableColumn = useMemo(() => horsesDetailsTableColumn(), []);
   const renderRaceDetailsTable = useMemo(() => {
     return (
       <Table
-        data={(row.original as Race).starts}
-        columns={horseDetailTableColumn}
+        data={[startRow.horse]}
+        columns={horseTableColumn}
       />
     );
-  }, [row.original, horseDetailTableColumn]);
+  }, [startRow, horseTableColumn]);
   
   return (
     <div className="m-6">

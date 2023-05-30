@@ -1,10 +1,13 @@
-
 import { fetchGameDetails } from "network/";
 import { useQuery } from "react-query";
 import { GameDetailsParams } from "types/GameDetailsType";
 
 export const GAME_DETAILS_QUERY = "game.details";
 
+/**
+ *
+ * @param params
+ */
 export const useGameDetailsQuery = (params: GameDetailsParams) => {
   return useQuery
   ([GAME_DETAILS_QUERY, params], () => {

@@ -15,7 +15,7 @@ export interface PurpleV86 {
     "@type": string;
     id: string;
     status: string;
-    timestamp: Date;
+    timestamp: Date | string;
     turnover: number;
     result: PurpleResult;
     harry: boolean;
@@ -55,7 +55,7 @@ export interface Race {
     ** We need to add "subRows" property here with race.starts as value because
     *  react-table expects to have subRows as property when we need to show expandable rows
    */
-    subRows: Start[];
+    subRows?: Start[];
     name?: string;
     mergedPools?: MergedPool[];
 }
@@ -70,7 +70,8 @@ export interface RacePools {
     plats: PurplePlats;
     tvilling: Komb;
     trio: Komb;
-    V86: FluffyV86;
+    V86?: FluffyV86;
+    V75?: FluffyV86;
     komb?: Komb;
 }
 
@@ -95,7 +96,7 @@ export interface Komb {
     "@type": string;
     id: string;
     status: string;
-    timestamp: Date;
+    timestamp: Date | string;
     turnover: number;
     result: KombResult;
 }
@@ -114,7 +115,7 @@ export interface PurplePlats {
     "@type": string;
     id: string;
     status: string;
-    timestamp: Date;
+    timestamp: Date | string;
     turnover: number;
     result: PlatsResult;
 }
@@ -139,7 +140,7 @@ export interface PurpleVinnare {
     "@type": string;
     id: string;
     status: string;
-    timestamp: Date;
+    timestamp: Date | string;
     turnover: number;
     result: VinnareResult;
 }
@@ -159,6 +160,11 @@ export interface Start {
     postPosition: number;
     distance: number;
     horse: Horse;
+    /*
+    ** We need to add "subRows" property here with race.starts as value because
+    *  react-table expects to have subRows as property when we need to show expandable rows
+   */
+    subRows?: Horse[];
     driver: Driver;
     result: StartResult;
     pools: StartPools;
@@ -327,7 +333,8 @@ export interface Years {
 export interface StartPools {
     vinnare: FluffyVinnare;
     plats: FluffyPlats;
-    V86: TentacledV86;
+    V75?: TentacledV86;
+    V86?: TentacledV86;
 }
 
 export interface TentacledV86 {
@@ -367,7 +374,7 @@ export interface StartResult {
 
 export interface Video {
     mediaId: string;
-    timestamp: Date;
+    timestamp: Date | string;
 }
 
 export interface Track {

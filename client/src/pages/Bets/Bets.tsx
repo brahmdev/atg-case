@@ -14,7 +14,7 @@ export function Bets () {
 
   const [recentBetResult, setRecentBetResult] = useState<Result>();
   const [recentBetResultTracks, setRecentBetResultTracks] = useState<Array<string>>();
-  
+
   const { data: betDetailsData, isLoading: isBetDetailsLoading, } = useBetDetailsQuery({ betType: selectedBetType });
   
   useEffect(() => {
@@ -29,9 +29,13 @@ export function Bets () {
     }
   }, [betDetailsData, isBetDetailsLoading]);
   
+  if (isBetDetailsLoading) {
+    return <p>Loading...</p>;
+  }
+  
   function renderTracks () {
     return (
-      <div className="flex justify-start items-center">
+      <div className="flex justify-start items-center" data-testid="track-container">
         <span className="font-semibold">Tracks:</span>
         <div className="ml-2 leading-10  whitespace-pre-wrap">
           {

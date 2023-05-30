@@ -6,8 +6,7 @@ import { BetDetailsParams } from "types/BetDetailsType";
 export const BET_DETAILS_QUERY = "bet.details";
 
 export const useBetDetailsQuery = (params: BetDetailsParams) => {
-  return useQuery
-  ([BET_DETAILS_QUERY, params], () => {
+  return useQuery([BET_DETAILS_QUERY, params], () => {
     return fetchBetDetails(params);
   }, 
   {

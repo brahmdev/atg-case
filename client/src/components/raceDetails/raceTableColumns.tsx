@@ -17,11 +17,14 @@ export function raceTableColumns () {
           >
             {row.getIsExpanded() ?
               <ChevronDownIcon
+                data-testid="collapse-race-details"
                 className="h-5 w-5 hover:cursor-pointer"
               /> :
               <ChevronRightIcon
+                data-testid="expand-race-details"
                 className="h-5 w-5 hover:cursor-pointer"
-              />}
+              />
+            }
           </button>
         );
       },
