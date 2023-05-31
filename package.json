@@ -20,10 +20,20 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install": "npm install concurrently --save & concurrently \"npm run install-server\" \"npm run install-client\"",
+    
+    "build-client": "npm run build --prefix client",
+    
     "client": "npm run start --prefix client",
     "server": "npm run start --prefix server",
-    "dev": "concurrently \"npm run client\" \"npm run server\" ",
-    "test": "npm run test --prefix client",
-    "lint:staged": "npx lint-staged"
+    "start": "concurrently \"npm run client\" \"npm run server\" ",
+    
+    "test": "npm test --coverage --prefix client",
+    
+    "format-client": "npm run format --prefix client",
+    "format-server": "npm run format --prefix server",
+    "format": "concurrently \"npm run format-client\" \"npm run format-server\" "
   }
 }

@@ -1,27 +1,27 @@
 module.exports = {
-  branches: [
-    "main",
-  ],
+  branches: ["main"],
   plugins: [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
-        changelogFile: "CHANGELOG.md"
-      }
+        changelogFile: "CHANGELOG.md",
+      },
     ],
-    ["@semantic-release/npm", {
-      "npmPublish": false
-    }],
+    [
+      "@semantic-release/npm",
+      {
+        npmPublish: false,
+      },
+    ],
     "@semantic-release/github",
     [
       "@semantic-release/git",
       {
         assets: ["CHANGELOG.md", "package.json", "dist/**"],
-        message: "chore(release): set `package.json` to ${nextRelease.version}"
-      }
-    ]
-  ]
+        message: "chore(release): set `package.json` to ${nextRelease.version}",
+      },
+    ],
+  ],
 };
-

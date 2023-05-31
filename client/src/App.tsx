@@ -2,7 +2,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { Bets } from "pages/";
-import { Header } from "pages/layout/Header";
+
+import { Header } from "components/layout/Header";
 
 import "./App.css";
 
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App () {
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
