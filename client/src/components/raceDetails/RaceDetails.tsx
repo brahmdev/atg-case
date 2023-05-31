@@ -13,26 +13,27 @@ import { useGameDetailsQuery } from "hooks/queries/useGameDetails";
 interface Props {
   betResult: Result;
 }
-export function RaceDetails ({ betResult }: Props) {
+export function RaceDetails({ betResult }: Props) {
   const [raceDetails, setRaceDetails] = useState<Array<Race>>();
-  const { data: raceDetailsData, isLoading: isGameDetailsLoading, } = useGameDetailsQuery({ gameId: betResult?.id });
-  
+  const { data: raceDetailsData, isLoading: isGameDetailsLoading } =
+    useGameDetailsQuery({ gameId: betResult?.id });
+
   useEffect(() => {
     if (!isGameDetailsLoading && raceDetailsData) {
       const raceDetailsToUpdate = { ...raceDetailsData };
       /*
-      ** We need to add "subRows" property here with race.starts as value because
-      *  react-table expects to have subRows as property when we need to show expandable rows
-      */
+       ** We need to add "subRows" property here with race.starts as value because
+       *  react-table expects to have subRows as property when we need to show expandable rows
+       */
       raceDetailsToUpdate?.races.map((race) => {
         race["subRows"] = race.starts;
       });
       setRaceDetails(raceDetailsToUpdate.races);
     }
   }, [raceDetailsData, isGameDetailsLoading]);
-  
+
   const columns = useMemo(() => raceTableColumns(), []);
-  
+
   if (isGameDetailsLoading) {
     return <p>Loading...</p>;
   }
@@ -44,10 +45,11 @@ export function RaceDetails ({ betResult }: Props) {
           data={raceDetails || []}
           columns={columns}
           getRowCanExpand={() => true}
-          renderSubComponent={({ row }: { row: Row<RowData>}) => <RaceHorses raceRow={(row.original as Race)} />}
+          renderSubComponent={({ row }: { row: Row<RowData> }) => (
+            <RaceHorses raceRow={row.original as Race} />
+          )}
         />
       </div>
-    
     </div>
   );
 }

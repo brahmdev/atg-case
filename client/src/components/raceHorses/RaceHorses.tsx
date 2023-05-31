@@ -8,34 +8,32 @@ import { raceHorsesTableColumn } from "components/raceHorses/raceHorsesTableColu
 import { Table } from "components/table";
 
 interface Props {
-  raceRow: Race
+  raceRow: Race;
 }
-export function RaceHorses ({ raceRow }: Props) {
+export function RaceHorses({ raceRow }: Props) {
   const [raceStarts, setRaceStarts] = useState<Array<Start>>([]);
   const horseDetailTableColumn = useMemo(() => raceHorsesTableColumn(), []);
-  
+
   useEffect(() => {
-    const updatedRaces = raceRow.starts.map(start => {
+    const updatedRaces = raceRow.starts.map((start) => {
       start.subRows = [start.horse];
       return start;
     });
     setRaceStarts(updatedRaces);
   }, [raceRow]);
-  
+
   const renderRaceDetailsTable = useMemo(() => {
     return (
       <Table
         data={raceStarts}
         columns={horseDetailTableColumn}
         getRowCanExpand={() => true}
-        renderSubComponent={({ row }: { row: Row<RowData>}) => <HorseDetails startRow={(row.original as Start)} />}
+        renderSubComponent={({ row }: { row: Row<RowData> }) => (
+          <HorseDetails startRow={row.original as Start} />
+        )}
       />
     );
   }, [raceStarts, horseDetailTableColumn]);
-  
-  return (
-    <div className="m-6">
-      {renderRaceDetailsTable}
-    </div>
-  );
+
+  return <div className="m-6">{renderRaceDetailsTable}</div>;
 }

@@ -1,6 +1,6 @@
 import { Horse } from "types/GameDetailsType";
 
-export function horsesDetailsTableColumn () {
+export function horsesDetailsTableColumn() {
   return [
     {
       accessorKey: "Trainer",
@@ -8,7 +8,9 @@ export function horsesDetailsTableColumn () {
       cell: (cellData: { row: { original: Horse } }) => {
         const trainerInfo = cellData.row.original.trainer;
         return (
-          <p className="p-2">{trainerInfo.firstName} {trainerInfo.lastName}</p>
+          <p className="p-2">
+            {trainerInfo.firstName} {trainerInfo.lastName}
+          </p>
         );
       },
     },
@@ -17,9 +19,7 @@ export function horsesDetailsTableColumn () {
       className: "w-275 min-h-fit",
       cell: (cellData: { row: { original: Horse } }) => {
         const pedigreeInfo = cellData.row.original.pedigree;
-        return (
-          <p className="p-2">{pedigreeInfo.father.name}</p>
-        );
+        return <p className="p-2">{pedigreeInfo.father.name}</p>;
       },
     },
   ];

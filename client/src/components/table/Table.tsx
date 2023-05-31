@@ -4,18 +4,20 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getExpandedRowModel, Row, RowData,
-  useReactTable
+  getExpandedRowModel,
+  Row,
+  RowData,
+  useReactTable,
 } from "@tanstack/react-table";
 
 interface ReactTableProps<TData> {
-    data: TData[];
-    columns: ColumnDef<TData>[];
-    getRowCanExpand?: (row: Row<TData>) => boolean;
-    renderSubComponent?: (columnDef: { row: Row<RowData> }) => JSX.Element
+  data: TData[];
+  columns: ColumnDef<TData>[];
+  getRowCanExpand?: (row: Row<TData>) => boolean;
+  renderSubComponent?: (columnDef: { row: Row<RowData> }) => JSX.Element;
 }
 
-export function Table<TData extends object> ({
+export function Table<TData extends object>({
   data,
   columns,
   renderSubComponent,
@@ -35,9 +37,9 @@ export function Table<TData extends object> ({
     <div className="px-4 sm:px-6 lg:px-8">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
-          {table.getHeaderGroups().map(headerGroup => (
+          {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
+              {headerGroup.headers.map((header) => (
                 <th key={header.id} className="text-left">
                   {flexRender(
                     header.column.columnDef.header,
@@ -54,8 +56,14 @@ export function Table<TData extends object> ({
               <tr key={row.id} className="border border-gray-300 p-2">
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <td key={cell.id} className={`${row.getIsExpanded() && "bg-blue-200"}`}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <td
+                      key={cell.id}
+                      className={`${row.getIsExpanded() && "bg-blue-200"}`}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </td>
                   );
                 })}

@@ -13,7 +13,7 @@ jobs:
         run: |
           version_nodejs=$(jq --raw-output .versions.nodejs .github/versions.json)
           echo "::set-output name=VERSION_NODEJS::${version_nodejs}"
-        id: env_vars  
+        id: env_vars
 
       # Use nodejs
       - name: Use nodejs ${{ steps.env_vars.outputs.VERSION_NODEJS }}

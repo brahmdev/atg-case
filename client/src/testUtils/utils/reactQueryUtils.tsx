@@ -6,12 +6,15 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import MockableFunction = jest.MockableFunction;
 
 export interface MockReactQueryReturnValueType {
-  data: object | null | undefined,
+  data: object | null | undefined;
 }
 
 export interface ReactQueryReturnType {
-  useQueryClient: MockableFunction,
-  useQuery: (queryKey: string, queryFunction: () => MockReactQueryReturnValueType) => MockReactQueryReturnValueType,
+  useQueryClient: MockableFunction;
+  useQuery: (
+    queryKey: string,
+    queryFunction: () => MockReactQueryReturnValueType
+  ) => MockReactQueryReturnValueType;
 }
 
 export const createTestQueryClient = () =>
@@ -23,9 +26,9 @@ export const createTestQueryClient = () =>
     },
   });
 
-export function renderWithClient (ui: ReactElement, queryClient?: QueryClient) {
+export function renderWithClient(ui: ReactElement, queryClient?: QueryClient) {
   const testQueryClient = queryClient ? queryClient : createTestQueryClient();
-  
+
   const { rerender, ...result } = render(
     <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
   );

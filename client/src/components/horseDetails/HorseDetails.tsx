@@ -6,23 +6,14 @@ import { horsesDetailsTableColumn } from "components/horseDetails/horseTableColu
 import { Table } from "components/table";
 
 interface Props {
-  startRow: Start
+  startRow: Start;
 }
-export function HorseDetails ({ startRow }: Props) {
+export function HorseDetails({ startRow }: Props) {
   const horseTableColumn = useMemo(() => horsesDetailsTableColumn(), []);
-  
+
   const renderRaceDetailsTable = useMemo(() => {
-    return (
-      <Table
-        data={[startRow.horse]}
-        columns={horseTableColumn}
-      />
-    );
+    return <Table data={[startRow.horse]} columns={horseTableColumn} />;
   }, [startRow, horseTableColumn]);
-  
-  return (
-    <div className="m-6">
-      {renderRaceDetailsTable}
-    </div>
-  );
+
+  return <div className="m-6">{renderRaceDetailsTable}</div>;
 }
