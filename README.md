@@ -30,7 +30,7 @@ Run the following command:
 
 `npm start`
 
-This will start the development server and the application will be accessible at http://localhost:3000 in your web browser.
+This will start the development server and the application will be accessible at `http://localhost:3000` in your web browser.
 
 #### Testing the Application
 This application uses the Jest testing framework for running unit tests. To run the tests, follow these steps:
@@ -52,13 +52,13 @@ Make sure you are in the project directory.
 
 Run the following command:
 
-`npm run lint`
+`npm run format`
 
-You can run below command to fix the linting errors:
+This will analyze your code and first run prettier to format the code using below command:
 
-`npm run lint:fix`
+`npm run prettier:fix`
 
-This will analyze your code and display any linting errors or warnings in your console.
+and then it run `npm run lint:fix` to fix the linting error(s).
 
 ### Additional Scripts
 In addition to the commands mentioned above, this project provides a few additional scripts that you can use:
@@ -90,7 +90,7 @@ Below are the few things which can be enhanced after delivery of MVP:
 
 1. Add loader state/component.
 2. Show empty list page when the data is not found.
-3. Implement teh Snapshot testing.
+3. Implement the Snapshot testing.
 4. Show error(s) to the user if present in the FE due to any event(s).
 
 ### License
